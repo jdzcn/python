@@ -10,9 +10,9 @@ def initializeModel(model):
    model.setTable('product')
    model.setEditStrategy(QSqlTableModel.OnFieldChange)
    model.select()
-   model.setHeaderData(0, Qt.Horizontal, "id")
-   model.setHeaderData(1, Qt.Horizontal, "name")
-   model.setHeaderData(2, Qt.Horizontal, "price")
+   #model.setHeaderData(0, Qt.Horizontal, "id")
+   #model.setHeaderData(1, Qt.Horizontal, "name")
+   #model.setHeaderData(2, Qt.Horizontal, "price")
 
 def createView(title, model):
    view = QTableView()
@@ -41,7 +41,7 @@ if __name__ == '__main__':
    view1 = createView("Table Model (View 1)", model)
    view1.clicked.connect(findrow)
 
-   dlg = QDialog()
+   dlg = QWidget()
    layout = QVBoxLayout()
    layout.addWidget(view1)
 
@@ -55,7 +55,8 @@ if __name__ == '__main__':
 
    dlg.setLayout(layout)
    dlg.setWindowTitle("Database Demo")
-   dlg.setFixedSize(900, 600)
+   dlg.setGeometry(200, 200,1000, 600)
+   #dlg.setFixedSize(900, 600)
    dlg.setFont(QFont('fonts-wqy-microhei', 12))
    dlg.show()
    sys.exit(app.exec_())

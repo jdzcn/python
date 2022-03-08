@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QSize,QUrl
-from PyQt5.QtWebEngineWidgets import QWebEngineView 
+#from PyQt5.QtWebEngineWidgets import QWebEngineView 
  
 class Example(QMainWindow):
      
@@ -19,10 +19,10 @@ class Example(QMainWindow):
         exitAction.setShortcut('Ctrl+Q')
 
         exitAction.triggered.connect(qApp.quit)
-        view=QWebEngineView(self)
-        view.load(QUrl('https://www.baidu.com'))
+        #view=QWebEngineView(self)
+        #view.load(QUrl('https://www.baidu.com'))
         self.setGeometry(100, 100, 500, 440)
-        self.setCentralWidget(view)
+        #self.setCentralWidget(view)
         self.toolbar = self.addToolBar('Exit')
         #self.toolbar.setIconSize(QSize(48,48))
         self.toolbar.setToolButtonStyle(3)

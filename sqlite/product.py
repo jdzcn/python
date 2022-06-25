@@ -33,7 +33,7 @@ def findrow(i):
 if __name__ == '__main__':
    app = QApplication(sys.argv)
    db = QSqlDatabase.addDatabase('QSQLITE')
-   db.setDatabaseName('products.db')
+   db.setDatabaseName('product.db')
    model = QSqlTableModel()
    delrow = -1
    initializeModel(model)

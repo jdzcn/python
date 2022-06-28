@@ -2,8 +2,10 @@
 
 import json
 import requests
+from requests.auth import HTTPBasicAuth
 
-r=requests.get('http://172.96.193.223/product.php')
+r=requests.get('http://172.96.193.223/admin/product.php',auth=HTTPBasicAuth('sb','songbin'))
+print(r.status_code)
 
 json_array = r.json()
 

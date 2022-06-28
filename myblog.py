@@ -34,12 +34,24 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName("groupBox")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName("verticalLayout")
+
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+
         self.edit_search = QtWidgets.QLineEdit(self.groupBox)
         self.edit_search.setObjectName("edit_search")
-        self.verticalLayout.addWidget(self.edit_search)
+
+        
+        self.btn_flush = QtWidgets.QPushButton(self.groupBox)
+        self.btn_flush.setObjectName("btn_flush")
+        self.horizontalLayout_3.addWidget(self.btn_flush)
+        self.horizontalLayout_3.addWidget(self.edit_search)
+
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.listWidget = QtWidgets.QListWidget(self.groupBox)
         self.listWidget.setObjectName("listWidget")
         self.verticalLayout.addWidget(self.listWidget)
+
         self.groupBox_2 = QtWidgets.QGroupBox(self.splitter)
         self.groupBox_2.setObjectName("groupBox_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox_2)
@@ -47,6 +59,7 @@ class Ui_MainWindow(object):
         self.textEdit = QtWidgets.QTextEdit(self.groupBox_2)
         self.textEdit.setObjectName("textEdit")
         self.verticalLayout_2.addWidget(self.textEdit)
+
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.edit_file = QtWidgets.QLineEdit(self.groupBox_2)
@@ -73,7 +86,9 @@ class Ui_MainWindow(object):
         self.listWidget.itemClicked.connect(self.titleclick)
         self.btn_clear.clicked.connect(self.btn_clead_click)
         self.btn_save.clicked.connect(self.save)
+        self.btn_flush.clicked.connect(self.showall)
         self.edit_search.textChanged.connect(self.search)
+        self.edit_search.setPlaceholderText('搜索')
 
 
 
@@ -83,6 +98,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def showall(self):
+        self.edit_search.clear()
         r=requests.get('http://172.96.193.223/sblog/getlist.php')
 
         json_array = r.json()
@@ -95,6 +111,9 @@ class Ui_MainWindow(object):
             store_details['file'] = item[1]
             self.listWidget.addItem(item[0])
             self.store_list.append(store_details)
+
+        self.statusbar.showMessage('找到'+str(self.listWidget.count())+'篇笔记')
+
 
     def search(self,str):
         self.store_list.clear()
@@ -113,7 +132,6 @@ class Ui_MainWindow(object):
                     self.listWidget.addItem(item[0])
                     self.store_list.append(store_details)
 
-
     def btn_clead_click(self):
         #self.textEdit.setMarkdown(self.textEdit.toPlainText())
         self.textEdit.clear()
@@ -123,19 +141,12 @@ class Ui_MainWindow(object):
     def save(self):
         file=str(self.edit_file.text())
         with open(self.edit_file.text(), 'w') as yourFile:
-            yourFile.write(file)
+            yourFile.write(self.textEdit.toPlainText())
         files = {'file': open(file, 'rb')}
         values = {'DB': 'photcat', 'OUT': 'csv', 'SHORT': 'short'}
         r = requests.post('http://172.96.193.223/sblog/upload.php', files=files, data=values)
-        print(r.status_code)
 
-        if r.ok:
-            
-            print("Upload completed successfully!")
-            print(test_response.text)
-        else:
-            print("Something went wrong!")
-
+        self.statusbar.showMessage(r.text+'返回玛：'+str(r.status_code))
 
     def titleclick(self,item):
         file=self.store_list[self.listWidget.currentRow()]['file']
@@ -153,6 +164,7 @@ class Ui_MainWindow(object):
         self.groupBox.setTitle(_translate("MainWindow", "标题"))
         self.groupBox_2.setTitle(_translate("MainWindow", "内容"))
         self.btn_save.setText(_translate("MainWindow", "保存"))
+        self.btn_flush.setText(_translate("MainWindow", "全部笔记"))
         self.btn_clear.setText(_translate("MainWindow", "清空"))
 
 

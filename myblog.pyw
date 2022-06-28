@@ -16,6 +16,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     store_list = []
+    server='http://172.96.193.223/sblog/'
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -99,7 +100,7 @@ class Ui_MainWindow(object):
 
     def showall(self):
         self.edit_search.clear()
-        r=requests.get('http://172.96.193.223/sblog/getlist.php')
+        r=requests.get(self.server+'getlist.php')
 
         json_array = r.json()
         self.store_list.clear()
@@ -122,7 +123,7 @@ class Ui_MainWindow(object):
             self.showall()
         else:
 
-            r=requests.get('http://172.96.193.223/sblog/getsearch.php?k='+str)
+            r=requests.get(self.server+'getsearch.php?k='+str)
 
             json_array = r.json()
             for item in json_array:
@@ -144,13 +145,13 @@ class Ui_MainWindow(object):
             yourFile.write(self.textEdit.toPlainText())
         files = {'file': open(file, 'rb')}
         values = {'DB': 'photcat', 'OUT': 'csv', 'SHORT': 'short'}
-        r = requests.post('http://172.96.193.223/sblog/upload.php', files=files, data=values)
+        r = requests.post(self.server+'upload.php', files=files, data=values)
 
         self.statusbar.showMessage(r.text+'返回玛：'+str(r.status_code))
 
     def titleclick(self,item):
         file=self.store_list[self.listWidget.currentRow()]['file']
-        content=requests.get('http://172.96.193.223/sblog/_posts/'+file)
+        content=requests.get(self.server+'_posts/'+file)
         content.encoding = "utf-8"
         #self.textEdit.setMarkdown(content.text)
         self.textEdit.setText(content.text)

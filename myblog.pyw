@@ -147,7 +147,7 @@ class Ui_MainWindow(object):
         values = {'DB': 'photcat', 'OUT': 'csv', 'SHORT': 'short'}
         r = requests.post(self.server+'upload.php', files=files, data=values)
 
-        self.statusbar.showMessage(r.text+'返回玛：'+str(r.status_code))
+        self.statusbar.showMessage(r.text+' 返回玛：'+str(r.status_code))
 
     def titleclick(self,item):
         file=self.store_list[self.listWidget.currentRow()]['file']

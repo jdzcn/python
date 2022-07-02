@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=wallpaper
+Exec=python3 /home/sb/python/wallpaper/wallpaper.pyw
+
+Path=/home/sb/python/wallpaper/
+Icon=/home/sb/python/wallpaper/timer.png
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;

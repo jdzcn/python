@@ -37,6 +37,10 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+
+
+            
+
         size = QtCore.QSize()
         size.setHeight(300)
         size.setWidth(300)        
@@ -57,6 +61,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+
+
+
 
     def setwp(self,item):
         self.statusbar.showMessage(self.mydir+item.text())

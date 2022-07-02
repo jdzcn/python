@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+﻿#!/usr/bin/python3
 
 # -*- coding: utf-8 -*-
 
@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
     server='http://172.96.193.223/sblog/'
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1152,864)
         font = QtGui.QFont()
         font.setFamily("WenQuanYi Micro Hei")
         font.setPointSize(12)

@@ -105,6 +105,7 @@ class Ui_MainWindow(object):
             icon = QtGui.QIcon(os.path.join(str, file))
             item = QtWidgets.QListWidgetItem(icon, file)
             self.listWidget.addItem(item)
+            
         self.statusbar.showMessage('当前目录：'+self.mydir)
 
     def toolbtnpressed(self,a):

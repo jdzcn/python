@@ -14,6 +14,7 @@ import requests
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_MainWindow(object):
     store_list = []
     server='http://172.96.193.223/sblog/'
@@ -69,9 +70,9 @@ class Ui_MainWindow(object):
         self.btn_save = QtWidgets.QPushButton(self.groupBox_2)
         self.btn_save.setObjectName("btn_save")
         self.horizontalLayout.addWidget(self.btn_save)
-        self.btn_clear = QtWidgets.QPushButton(self.groupBox_2)
-        self.btn_clear.setObjectName("btn_clear")
-        self.horizontalLayout.addWidget(self.btn_clear)
+        #self.btn_clear = QtWidgets.QPushButton(self.groupBox_2)
+        #self.btn_clear.setObjectName("btn_clear")
+        # self.horizontalLayout.addWidget(self.btn_clear)
         self.verticalLayout_2.addLayout(self.horizontalLayout)
         self.horizontalLayout_2.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -85,7 +86,7 @@ class Ui_MainWindow(object):
 
         #self.splitter.setStretchFactor(1, 2)
         self.listWidget.itemClicked.connect(self.titleclick)
-        self.btn_clear.clicked.connect(self.btn_clead_click)
+        #self.btn_clear.clicked.connect(self.btn_clead_click)
         self.btn_save.clicked.connect(self.save)
         self.btn_flush.clicked.connect(self.showall)
         self.edit_search.textChanged.connect(self.search)
@@ -133,16 +134,16 @@ class Ui_MainWindow(object):
                     self.listWidget.addItem(item[0])
                     self.store_list.append(store_details)
 
-    def btn_clead_click(self):
-        #self.textEdit.setMarkdown(self.textEdit.toPlainText())
-        self.textEdit.clear()
-        from datetime import date
-        self.edit_file.setText(date.today().strftime('%Y-%m-%d-')+'.md')
+    # def btn_clead_click(self):
+    #     #self.textEdit.setMarkdown(self.textEdit.toPlainText())
+    #     self.textEdit.clear()
+    #     from datetime import date
+    #     self.edit_file.setText(date.today().strftime('%Y-%m-%d-')+'.md')
         
     def save(self):
         file=str(self.edit_file.text())
         with open(file, 'w') as yourFile:
-            yourFile.write(self.textEdit.toPlainText())
+            yourFile.write(str(self.textEdit.toPlainText()))
         files = {'file': open(file, 'rb')}
         values = {'DB': 'photcat', 'OUT': 'csv', 'SHORT': 'short'}
         r = requests.post(self.server+'upload.php', files=files, data=values)
@@ -167,7 +168,7 @@ class Ui_MainWindow(object):
         self.groupBox_2.setTitle(_translate("MainWindow", "内容"))
         self.btn_save.setText(_translate("MainWindow", "保存"))
         self.btn_flush.setText(_translate("MainWindow", "全部笔记"))
-        self.btn_clear.setText(_translate("MainWindow", "清空"))
+        # self.btn_clear.setText(_translate("MainWindow", "清空"))
 
 
 if __name__ == "__main__":

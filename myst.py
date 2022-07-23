@@ -58,8 +58,7 @@ class Ui_MainWindow(object):
         self.splitter.setStretchFactor(1, 4)
         self.lineEdit.textChanged.connect(self.search)
 
-        self.thread = Worker()
-        self.thread.sinOut.connect(self.slotAdd)
+
 
         r=requests.get('http://172.96.193.223/category.php')
 
@@ -110,7 +109,6 @@ class Ui_MainWindow(object):
     def search(self,str):
         self.listWidget.clear()
 
-        self.thread=None
         self.thread=Worker(None,str)
         self.thread.sinOut.connect(self.slotAdd)
         self.thread.start()
@@ -122,8 +120,7 @@ class Worker(QThread):
     def __init__(self,parent=None,str=''):
         super(Worker,self).__init__(parent)
         self.str=str
-    def __del__(self):
-        self.wait()        
+      
         
     def run(self):
 

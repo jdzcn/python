@@ -35,6 +35,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        
         self.toolBar = QtWidgets.QToolBar(MainWindow)
         self.toolBar.setIconSize(QtCore.QSize(48, 48))
         self.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)

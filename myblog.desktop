@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=myblog
-Exec=python3 /home/sb/python/myblog.pyw
-
-Path=/home/sb/python/
-Terminal=false
-Type=Application
-Categories=System;TerminalEmulator;

@@ -1,7 +1,0 @@
-uname -a
-cat /etc/hostname
-pwd
-tail -10 /var/log/apache2/access.log
-tail -10 /var/log/apache2/error.log
-sh backupdata.sh
-git status

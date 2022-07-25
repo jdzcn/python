@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("go.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.act_Go.setIcon(icon2)
-        self.act_Go.setShortcut(QtGui.QKeySequence("Ctrl+R"))
+        self.act_Go.setShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Return))
         self.act_Go.setObjectName("act_Go")
 
         self.toolBar.addAction(self.act_Go)

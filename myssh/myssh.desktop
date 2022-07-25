@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=myssh
+Exec=python3 /home/sb/python/myssh/myssh.pyw
+
+Path=/home/sb/python/myssh/
+Icon=/home/sb/python/myssh/go.ico
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;

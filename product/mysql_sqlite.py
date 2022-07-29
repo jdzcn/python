@@ -16,7 +16,7 @@ for item in json_array:
                 sid=1
         name=item['name'].replace('景德镇御雅堂手绘','')
         gid=item['tags'].replace('1,','').split(',')[0]
-        sql=f"insert into product (name,image,cid,sid,gid,spec,price) values('{name}','{item['images']}',{item['cid']},{sid},{gid},'{item['spec']}',{item['price']})"
+        sql=f"insert into product (name,image,cid,sid,gid,spec,price) values('{name}','{item['images']}',{sid},{item['cid']},{gid},'{item['spec']}',{item['price']})"
         print(sql)
         db.execute(sql)
 conn.commit()
